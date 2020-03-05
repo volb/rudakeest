@@ -6,9 +6,12 @@ import * as serviceWorker from './serviceWorker';
 class Menu extends React.Component {
   render() {
     return (
+      <div class="menu">
       <MenuOption name="FONTS" />
       <MenuOption name="ANIMATIONS" />
       <MenuOption name="OPTIONS" />
+      </div>
+
     );
   }
 }
@@ -16,16 +19,19 @@ class Menu extends React.Component {
 class MenuOption extends React.Component {
   render() {
     return (
-      <MenuButton />
-      <MenuButton />
-      <MenuButton />
+      <div class="menu-option">
+      <h2>{this.props.name}</h2>
+      <MenuButton name={this.props.name} number={0} />
+      <MenuButton name={this.props.name} number={1} />
+      <MenuButton name={this.props.name} number={2} />
+      </div>
     );
   }
 }
 
 class MenuButton extends React.Component {
   render() {
-    return (<button></button>);
+    return (<button>{CHOICES[this.props.name][this.props.number]}</button>);
   }
 }
 
