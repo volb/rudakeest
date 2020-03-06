@@ -43,10 +43,10 @@ const CHOICES = {
     "FONTS": ['Lusitana', 'Georgia', 'Inria Serif'],
     "ANIMATIONS": ['Fade', 'Rise', 'Slide'],
     "OPTIONS": ["Verse-by-verse", "By stanza", "Include translations"]
-  };
+};
+/* Thinking of making CHOICES more DRY */
 
-
-ReactDOM.render(<Menu />, document.getElementById('root'));
+ReactDOM.render(<Menu />, document.getElementById('menu'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
