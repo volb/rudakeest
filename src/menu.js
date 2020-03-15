@@ -11,7 +11,6 @@ class Menu extends React.Component {
       <MenuOption name="ANIMATIONS" />
       <MenuOption name="OPTIONS" />
       </div>
-
     );
   }
 }
@@ -36,7 +35,7 @@ class MenuButton extends React.Component {
 }
 
 function MenuActivate() {
-
+/* on "Animate!" click, hide submit boxes and all div classes conditionally in render function */
 }
 
 const CHOICES = {
@@ -46,8 +45,8 @@ const CHOICES = {
 };
 /* Thinking of making CHOICES more DRY */
 
-ReactDOM.render(<Menu />, document.getElementById('menu'));
-
+/*ReactDOM.render(<Menu />, document.getElementById('menu'));*/
+export default Menu;
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

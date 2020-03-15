@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './menu.js'
+import Menu from './menu.js';
 import './menu.css';
 import * as serviceWorker from './serviceWorker';
 
-class PoemForm extends React.Component {
+class InputForm extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        value: '',
-        splitPoem: []
+        poem: '',
+        splitPoem: [],
+        name: props.name
       };
   
       this.handleChange = this.handleChange.bind(this);
@@ -17,29 +18,44 @@ class PoemForm extends React.Component {
     }
   
     handleChange(event) {
-      this.setState({value: event.target.value});
+      this.setState({poem: event.target.value});
     }
   
     handleSubmit(event) {
-      this.setState({value: event.target.value});
-      this.setState({splitPoem: this.state.value.split('\n')});
+      this.setState({poem: event.target.value});
+      this.setState({splitPoem: this.state.poem.split('\n')});
       event.preventDefault();
     }
-  
+
     render() {
       return (
         <form onSubmit={this.handleSubmit}>
           <label>
-            Poem: {JSON.stringify(this.state.splitPoem)}
-            {this.state.value}
-            <textarea value={this.state.value} onChange={this.handleChange} />
+            da {this.state.name}: {JSON.stringify(this.state.splitPoem)}
+            {this.state.poem}
+            <textarea value={this.state.poem} onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit" />
         </form>
       );
     }
+}
+
+class MainBox extends React.Component {
+  render() {
+    return (
+    <div class="main-box">
+    <Menu />
+    <InputForm name="Poem" />
+    <InputForm name="Translation" />
+    </div>
+    );
   }
-  
+}
 
 
-ReactDOM.render(<PoemForm />, document.getElementById('root'));
+
+
+
+
+ReactDOM.render(<MainBox />, document.getElementById('root'));
