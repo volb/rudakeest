@@ -10,7 +10,8 @@ class InputForm extends React.Component {
       this.state = {
         poem: '',
         splitPoem: [],
-        name: props.name
+        name: props.name,
+        poemSubmitted: false
       };
   
       this.handleChange = this.handleChange.bind(this);
@@ -22,16 +23,17 @@ class InputForm extends React.Component {
     }
   
     handleSubmit(event) {
+      event.preventDefault();
       this.setState({poem: event.target.value});
       this.setState({splitPoem: this.state.poem.split('\n')});
-      event.preventDefault();
+      this.setState({poemSubmitted: true});
     }
 
     render() {
       return (
         <form onSubmit={this.handleSubmit}>
           <label>
-            da {this.state.name}: {JSON.stringify(this.state.splitPoem)}
+            Enter the {this.state.name}: {JSON.stringify(this.state.splitPoem)}
             {this.state.poem}
             <textarea value={this.state.poem} onChange={this.handleChange} />
           </label>
@@ -52,10 +54,5 @@ class MainBox extends React.Component {
     );
   }
 }
-
-
-
-
-
 
 ReactDOM.render(<MainBox />, document.getElementById('root'));
