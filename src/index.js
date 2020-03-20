@@ -30,6 +30,7 @@ class InputForm extends React.Component {
   }
 
   render() {
+    if (!this.props.shouldAnimate) {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -40,6 +41,13 @@ class InputForm extends React.Component {
         <input type="submit" value="Submit" />
       </form>
     );
+    } else if (this.props.shouldAnimate) {
+        return (
+          <div class="animated-poem">
+            {this.state.poem}
+          </div>
+        )
+    }
   }
 }
 
@@ -62,8 +70,8 @@ class MainBox extends React.Component {
     return (
       <div class="main-box">
         <Menu />
-        <InputForm name="Poem" />
-        <InputForm name="Translation" />
+        <InputForm name="Poem" shouldAnimate={this.state.isAnimated} />
+        <InputForm name="Translation" shouldAnimate={this.state.isAnimated} />
     <button onClick={this.toggleAnimation}>
           {this.state.animationText}
     </button>

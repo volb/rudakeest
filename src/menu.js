@@ -35,7 +35,7 @@ class MenuButton extends React.Component {
 }
 
 function MenuActivate() {
-/* on "Animate!" click, hide submit boxes and all div classes conditionally in render function */
+/* on "Hide menu" click, hide submit boxes and all div classes conditionally in render function */
 }
 
 const CHOICES = {
