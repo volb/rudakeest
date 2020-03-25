@@ -66,6 +66,7 @@ class MainBox extends React.Component {
   toggleAnimation() {
     this.setState({ isAnimated: !this.state.isAnimated });
     this.setState({ animationText: this.state.isAnimated ? "Animate" : "Minimize" });
+    toggleFullscreen();
   }
 
   render() {
@@ -73,20 +74,32 @@ class MainBox extends React.Component {
       <div class="main-box">
         <Menu />
         <button onClick={this.MenuActivate}>Hide menu</button>
+        <div id="input-forms">
         <InputForm name="poem" shouldAnimate={this.state.isAnimated} />
         <InputForm name="translation" shouldAnimate={this.state.isAnimated} />
     <button class="on-top" onClick={this.toggleAnimation}>
           {this.state.animationText}
     </button>
+
+        </div>
     <p>{JSON.stringify(this.state.isAnimated)}</p>
       </div>
     );
   }
 
   MenuActivate() {
-    /* on "Hide menu" click, hide menu */ 
+    /* on "Hide menu" click, hide menu */
     document.getElementsByClassName("menu")[0].style.display = 'none';
   }
 }
 
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+      document.getElementById('input-forms').requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
 ReactDOM.render(<MainBox />, document.getElementById('root'));
