@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Menu from './menu.js';
 import './menu.css';
+import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 class InputForm extends React.Component {
@@ -43,7 +44,7 @@ class InputForm extends React.Component {
     );
     } else if (this.props.shouldAnimate) {
         return (
-          <div class="animated-poem">
+          <div id={"animated-"+this.props.name}>
             {this.state.poem}
           </div>
         )
@@ -59,6 +60,7 @@ class MainBox extends React.Component {
       animationText: "Animate"
     };
     this.toggleAnimation = this.toggleAnimation.bind(this);
+    this.MenuActivate = this.MenuActivate.bind(this);
   }
 
   toggleAnimation() {
@@ -70,14 +72,20 @@ class MainBox extends React.Component {
     return (
       <div class="main-box">
         <Menu />
-        <InputForm name="Poem" shouldAnimate={this.state.isAnimated} />
-        <InputForm name="Translation" shouldAnimate={this.state.isAnimated} />
-    <button onClick={this.toggleAnimation}>
+        <button onClick={this.MenuActivate}>Hide menu</button>
+        <InputForm name="poem" shouldAnimate={this.state.isAnimated} />
+        <InputForm name="translation" shouldAnimate={this.state.isAnimated} />
+    <button class="on-top" onClick={this.toggleAnimation}>
           {this.state.animationText}
     </button>
     <p>{JSON.stringify(this.state.isAnimated)}</p>
       </div>
     );
+  }
+
+  MenuActivate() {
+    /* on "Hide menu" click, hide menu */ 
+    document.getElementsByClassName("menu")[0].style.display = 'none';
   }
 }
 

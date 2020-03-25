@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#animated-poem {
+  position: absolute; 
+  float: left;
+  top: 0;
+  right: 200;
+  bottom: 200;
+  left: 200;
+  width: 50%; height: 50%;
+  color: black;
+  background-color: yellow;
+}
+
+#animated-translation {
+  position: absolute; 
+  float: right;
+  top: 0;
+  right: 200;
+  bottom: 200;
+  left: 200;
+  width: 50%; height: 50%;
+  color: black;
+  background-color: green;
+}
+
+.on-top {
+  z-index: 999;
+}

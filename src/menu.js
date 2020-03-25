@@ -34,10 +34,6 @@ class MenuButton extends React.Component {
   }
 }
 
-function MenuActivate() {
-/* on "Hide menu" click, hide submit boxes and all div classes conditionally in render function */
-}
-
 const CHOICES = {
     "FONTS": ['Lusitana', 'Georgia', 'Inria Serif'],
     "ANIMATIONS": ['Fade', 'Rise', 'Slide'],
