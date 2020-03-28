@@ -4,6 +4,7 @@ import Menu from './menu.js';
 import './menu.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import { CSSTransition } from 'react-transition-group';
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -44,9 +45,16 @@ class InputForm extends React.Component {
     );
     } else if (this.props.shouldAnimate) {
         return (
+          <CSSTransition
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+                      
           <div id={"animated-"+this.props.name}>
             {this.state.poem}
           </div>
+
+        </CSSTransition>
         )
     }
   }
