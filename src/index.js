@@ -5,6 +5,8 @@ import './menu.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { CSSTransition } from 'react-transition-group';
+import Fullscreen from "react-full-screen";
+
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -26,7 +28,6 @@ class InputForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ poem: event.target.value });
     this.setState({ splitPoem: this.state.poem.split('\n') });
     this.setState({ poemSubmitted: true });
   }
@@ -46,9 +47,7 @@ class InputForm extends React.Component {
     } else if (this.props.shouldAnimate) {
         return (
           <CSSTransition
-          transitionName="example"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
+          timeout={300}>
                       
           <div id={"animated-"+this.props.name}>
             {this.state.poem}
@@ -64,17 +63,45 @@ class MainBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAnimated: false,
+      isFull: false,
       animationText: "Animate"
     };
     this.toggleAnimation = this.toggleAnimation.bind(this);
+    this.toggleFullscreen = this.toggleFullscreen.bind(this);
+    this.exitHandler = this.exitHandler.bind(this);
+
     this.MenuActivate = this.MenuActivate.bind(this);
   }
 
   toggleAnimation() {
+    /*Not sure I need a "Minimize" button on the full screen mode so I'm going to do this instead*/
+    this.toggleFullscreen();  
+  }
+
+  toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.getElementById('input-forms').requestFullscreen();
+    } else {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        }
+    }
+
     this.setState({ isAnimated: !this.state.isAnimated });
-    this.setState({ animationText: this.state.isAnimated ? "Animate" : "Minimize" });
-    toggleFullscreen();
+    document.addEventListener('fullscreenchange', this.setState({ isAnimated: false }));
+
+    this.setState({ animationText: this.state.isAnimated ? "Minimize" : "Animate" });
+  }
+
+  exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+      console.log("blah");
+      this.setState({ isAnimated: false });
+    }
+  }
+
+  goFull = () => {
+    this.setState({ isFull: true });
   }
 
   render() {
@@ -82,14 +109,21 @@ class MainBox extends React.Component {
       <div class="main-box">
         <Menu />
         <button onClick={this.MenuActivate}>Hide menu</button>
-        <div id="input-forms">
-        <InputForm name="poem" shouldAnimate={this.state.isAnimated} />
-        <InputForm name="translation" shouldAnimate={this.state.isAnimated} />
-    <button class="on-top" onClick={this.toggleAnimation}>
-          {this.state.animationText}
-    </button>
 
-        </div>
+        <Fullscreen
+          enabled={this.state.isFull}
+          onChange={isFull => this.setState({isFull})}
+        >
+          <div id="input-forms">
+            <InputForm name="poem" shouldAnimate={this.state.isFull} />
+            <InputForm name="translation" shouldAnimate={this.state.isFull} />
+          </div>
+          </Fullscreen>
+        <button class="on-top" onClick={this.goFull}>
+          {this.state.animationText}
+        </button>
+
+
     <p>{JSON.stringify(this.state.isAnimated)}</p>
       </div>
     );
@@ -101,13 +135,6 @@ class MainBox extends React.Component {
   }
 }
 
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-      document.getElementById('input-forms').requestFullscreen();
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
-  }
-}
+
+
 ReactDOM.render(<MainBox />, document.getElementById('root'));
