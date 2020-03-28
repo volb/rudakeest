@@ -66,38 +66,8 @@ class MainBox extends React.Component {
       isFull: false,
       animationText: "Animate"
     };
-    this.toggleAnimation = this.toggleAnimation.bind(this);
-    this.toggleFullscreen = this.toggleFullscreen.bind(this);
-    this.exitHandler = this.exitHandler.bind(this);
 
     this.MenuActivate = this.MenuActivate.bind(this);
-  }
-
-  toggleAnimation() {
-    /*Not sure I need a "Minimize" button on the full screen mode so I'm going to do this instead*/
-    this.toggleFullscreen();  
-  }
-
-  toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      document.getElementById('input-forms').requestFullscreen();
-    } else {
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        }
-    }
-
-    this.setState({ isAnimated: !this.state.isAnimated });
-    document.addEventListener('fullscreenchange', this.setState({ isAnimated: false }));
-
-    this.setState({ animationText: this.state.isAnimated ? "Minimize" : "Animate" });
-  }
-
-  exitHandler() {
-    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-      console.log("blah");
-      this.setState({ isAnimated: false });
-    }
   }
 
   goFull = () => {
@@ -134,7 +104,5 @@ class MainBox extends React.Component {
     document.getElementsByClassName("menu")[0].style.display = 'none';
   }
 }
-
-
 
 ReactDOM.render(<MainBox />, document.getElementById('root'));
