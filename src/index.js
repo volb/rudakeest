@@ -94,7 +94,6 @@ class MainBox extends React.Component {
         </button>
 
 
-    <p>{JSON.stringify(this.state.isAnimated)}</p>
       </div>
     );
   }

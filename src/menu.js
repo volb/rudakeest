@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import './menu.css';
 import * as serviceWorker from './serviceWorker';
+import SettingsContext from './settingsContext';
 
 class Menu extends React.Component {
   render() {
@@ -28,17 +29,16 @@ class MenuOption extends React.Component {
   }
 }
 
-class MenuButton extends React.Component {
-  render() {
-    return (<button>{CHOICES[this.props.name][this.props.number]}</button>);
-  }
+function MenuButton(props) {
+  const settings = useContext(SettingsContext); 
+  return (<button onClick="">{CHOICES[props.name][props.number]}</button>);
 }
-
 const CHOICES = {
-    "FONTS": ['Lusitana', 'Georgia', 'Inria Serif'],
-    "ANIMATIONS": ['Fade', 'Rise', 'Slide'],
-    "OPTIONS": ["Verse-by-verse", "By stanza", "Include translations"]
+  "FONTS": ['Lusitana', 'Georgia', 'Inria Serif'],
+  "ANIMATIONS": ['Fade', 'Rise', 'Slide'],
+  "OPTIONS": ["Verse-by-verse", "By stanza", "Include translations"]
 };
+
 /* Thinking of making CHOICES more DRY */
 
 /*ReactDOM.render(<Menu />, document.getElementById('menu'));*/
