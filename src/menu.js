@@ -29,7 +29,7 @@ class MenuOption extends React.Component {
   }
 }
 
-export function MenuButton(props) {
+function MenuButton(props) {
   let { state, dispatch } = React.useContext(SettingsContext);
 
   React.useEffect(
@@ -40,11 +40,11 @@ export function MenuButton(props) {
   );
   
   //let setFont = num => dispatch( { type: "set-font", payload: CHOICES["FONTS"][num]});
-  function setFont(num) {
-    dispatch( { type: "set-font", payload: CHOICES["FONTS"][num]});
-    alert(state.font);
+  function setSettings(name, num) {
+    dispatch( { type: name, payload: CHOICES[name][num]});
+    alert(JSON.stringify(state));
   }
-  return (<button onClick = {() => setFont(props.number)}>{CHOICES[props.name][props.number]}</button>);
+  return (<button onClick = {() => setSettings(props.name, props.number)}>{CHOICES[props.name][props.number]}</button>);
 }
 const CHOICES = {
   "FONTS": ['Lusitana', 'Georgia', 'Inria Serif'],

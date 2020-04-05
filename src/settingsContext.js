@@ -10,8 +10,12 @@ let initialState = {
 
 let reducer = (state, action) => {
   switch (action.type) {
-    case "set-font":
+    case "FONTS":
       return { ...state, font: action.payload };
+    case "ANIMATIONS":
+      return { ...state, animation: action.payload };
+    case "OPTIONS":
+      return { ...state, option: action.payload };
   }
 };
 

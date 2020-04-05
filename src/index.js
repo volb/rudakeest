@@ -81,7 +81,6 @@ class MainBox extends React.Component {
         <SettingsContextProvider>
         <Menu />
         <button onClick={this.MenuActivate}>Hide menu</button>
-
         <Fullscreen
           enabled={this.state.isFull}
           onChange={isFull => this.setState({isFull})}
