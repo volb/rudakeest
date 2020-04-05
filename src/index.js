@@ -1,8 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Menu from './menu.js';
+import Menu from './menu';
 import './menu.css';
 import './index.css';
+import { SettingsContextProvider } from './settingsContext';
 import * as serviceWorker from './serviceWorker';
 import { CSSTransition } from 'react-transition-group';
 import Fullscreen from "react-full-screen";
@@ -77,6 +78,7 @@ class MainBox extends React.Component {
   render() {
     return (
       <div class="main-box">
+        <SettingsContextProvider>
         <Menu />
         <button onClick={this.MenuActivate}>Hide menu</button>
 
@@ -92,7 +94,7 @@ class MainBox extends React.Component {
         <button class="on-top" onClick={this.goFull}>
           {this.state.animationText}
         </button>
-
+        </SettingsContextProvider>
 
       </div>
     );
