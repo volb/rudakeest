@@ -34,7 +34,7 @@ function MenuButton(props) {
 
   React.useEffect(
     () => {
-      document.body.style.font = state.font;
+      document.getElementById("input-forms").style.fontFamily = state.font;
     },
     [state.font]
   );
@@ -42,12 +42,12 @@ function MenuButton(props) {
   //let setFont = num => dispatch( { type: "set-font", payload: CHOICES["FONTS"][num]});
   function setSettings(name, num) {
     dispatch( { type: name, payload: CHOICES[name][num]});
-    alert(JSON.stringify(state));
+    //alert(JSON.stringify(state));
   }
   return (<button onClick = {() => setSettings(props.name, props.number)}>{CHOICES[props.name][props.number]}</button>);
 }
 const CHOICES = {
-  "FONTS": ['Lusitana', 'Georgia', 'Inria Serif'],
+  "FONTS": ['Lusitana', 'Gotu', 'Inria Serif'],
   "ANIMATIONS": ['Fade', 'Rise', 'Slide'],
   "OPTIONS": ["Verse-by-verse", "By stanza", "Include translations"]
 };
