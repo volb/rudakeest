@@ -4,11 +4,27 @@ import Menu from './menu';
 import './menu.css';
 import './index.css';
 import { SettingsContextProvider } from './settingsContext';
-import * as serviceWorker from './serviceWorker';
-import { CSSTransition } from 'react-transition-group';
+//import * as serviceWorker from './serviceWorker';
+import { FadeIn, FadeOutLeft, SlideOutDown } from 'react-animations'
+import styled, { keyframes } from "styled-components";
 import Fullscreen from "react-full-screen";
 
+const FadeInAnimation = keyframes`${FadeIn}`;
+const FadeInDiv = styled.div`
+  animation: infinite 5s ${FadeInAnimation};
+`;
 
+const FadeOutLeftAnimation = keyframes`${FadeOutLeft}`;
+const FadeOutLeftDiv = styled.div`
+  animation: infinite 5s ${FadeOutLeftAnimation};
+`;
+
+
+const SlideOutDownAnimation = keyframes`${SlideOutDown}`;
+const SlideOutDownDiv = styled.div`
+  animation: infinite 5s ${SlideOutDownAnimation};
+`;
+	
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
@@ -47,14 +63,10 @@ class InputForm extends React.Component {
     );
     } else if (this.props.shouldAnimate) {
         return (
-          <CSSTransition
-          timeout={300}>
-                      
           <div id={"animated-"+this.props.name}>
             {this.state.poem}
           </div>
 
-        </CSSTransition>
         )
     }
   }

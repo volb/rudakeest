@@ -14,7 +14,7 @@ let reducer = (state, action) => {
       return { ...state, font: action.payload };
     case "ANIMATIONS":
       return { ...state, animation: action.payload };
-    case "OPTIONS":
+    case "FORMATTING":
       return { ...state, option: action.payload };
   }
 };

@@ -10,7 +10,7 @@ class Menu extends React.Component {
       <div class="menu">
       <MenuOption name="FONTS" />
       <MenuOption name="ANIMATIONS" />
-      <MenuOption name="OPTIONS" />
+      <MenuOption name="FORMATTING" />
       </div>
     );
   }
@@ -38,10 +38,18 @@ function MenuButton(props) {
     },
     [state.font]
   );
+  /*
+  React.useEffect(
+    () => {
+      document.getElementById("animated-translation").style.display = state.includeTranslation;
+    },
+    [state.includeTranslation]
+  );
+  */
   
   //let setFont = num => dispatch( { type: "set-font", payload: CHOICES["FONTS"][num]});
   function setSettings(name, num) {
-    dispatch( { type: name, payload: CHOICES[name][num]});
+    dispatch( { type: name, payload: CHOICES[name][num] } );
     //alert(JSON.stringify(state));
   }
   return (<button onClick = {() => setSettings(props.name, props.number)}>{CHOICES[props.name][props.number]}</button>);
@@ -49,7 +57,7 @@ function MenuButton(props) {
 const CHOICES = {
   "FONTS": ['Lusitana', 'Gotu', 'Inria Serif'],
   "ANIMATIONS": ['Fade', 'Rise', 'Slide'],
-  "OPTIONS": ["Verse-by-verse", "By stanza", "Include translations"]
+  "FORMATTING": ["Verse-by-verse", "By stanza", "Entire text"]
 };
 
 /* Thinking of making CHOICES more DRY */
