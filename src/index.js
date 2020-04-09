@@ -64,9 +64,12 @@ class InputForm extends React.Component {
     } else if (this.props.shouldAnimate) {
         return (
           <div id={"animated-"+this.props.name}>
-            {this.state.poem}
-          </div>
+            <FadeInDiv>
+              {this.state.poem}
+    <img src="https://picsum.photos/300/200/?random" />
 
+            </FadeInDiv>
+          </div>
         )
     }
   }

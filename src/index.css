@@ -18,11 +18,15 @@ code {
 #animated-poem {
   float: left;
   background-color: yellow;
+  width: 50%;
+  height: 100vh;
 }
 
 #animated-translation {
   float:left;
   background-color: green;
+  width: 50%;
+  height: 100vh;
 }
 
 #input-forms {
