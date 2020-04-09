@@ -83,46 +83,13 @@ class InputForm extends React.Component {
                 <AnimationDiv animation={value.state["animation"]}>
                   {this.state.poem}
                 </AnimationDiv>
-              </div>);}}
+              </div>);
+          }}
         </SettingsContextConsumer>
       );
-            }}
-}
-/*
-function MainBox() {
-  const [isFull, setIsFull] = useState(false);
-  function changeFull(value) {
-    setIsFull(value);
+    }
   }
-
-  function goFull() {
-    setIsFull(true);
-  }
-
-  return (
-    <div id="main-box">
-      <SettingsContextProvider>
-      <Menu />
-      <Fullscreen
-        enabled={isFull}
-        onChange={() => setIsFull(isFull)}
-      >
-        <div id="input-forms">
-          <AnimationDiv animation="false">
-          <InputForm name="poem" shouldAnimate={isFull} />
-          <InputForm name="translation" shouldAnimate={isFull} />
-          </AnimationDiv>
-        </div>
-        </Fullscreen>
-      <button id="on-top" onClick={goFull}>
-        Animate
-      </button>
-      </SettingsContextProvider>
-
-    </div>
-  );
 }
-*/
 
 class MainBox extends React.Component {
   constructor(props) {
