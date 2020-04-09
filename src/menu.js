@@ -7,7 +7,7 @@ import { SettingsContext } from './settingsContext';
 class Menu extends React.Component {
   render() {
     return (
-      <div class="menu">
+      <div className="menu">
       <MenuOption name="FONTS" />
       <MenuOption name="ANIMATIONS" />
       <MenuOption name="FORMATTING" />
@@ -19,7 +19,7 @@ class Menu extends React.Component {
 class MenuOption extends React.Component {
   render() {
     return (
-      <div class="menu-option">
+      <div className="menu-option">
       <h2>{this.props.name}</h2>
       <MenuButton name={this.props.name} number={0} />
       <MenuButton name={this.props.name} number={1} />
