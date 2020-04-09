@@ -30,4 +30,6 @@ function SettingsContextProvider(props) {
 
 let SettingsContextConsumer = SettingsContext.Consumer;
 
+
 export { SettingsContext, SettingsContextProvider, SettingsContextConsumer };
+

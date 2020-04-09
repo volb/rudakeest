@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Menu from './menu';
 import './menu.css';
 import './index.css';
-import { SettingsContextProvider } from './settingsContext';
+import { SettingsContextProvider, SettingsContext, SettingsContextConsumer } from './settingsContext';
 //import * as serviceWorker from './serviceWorker';
 import { fadeIn, fadeOutLeft, slideOutDown } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
@@ -24,7 +24,20 @@ const SlideOutDownAnimation = keyframes`${slideOutDown}`;
 const SlideOutDownDiv = styled.div`
   animation: infinite 5s ${SlideOutDownAnimation};
 `;
-	
+
+function AnimationDiv(props) {
+  switch (props.animation) {
+    case "Fade":
+      return (<FadeInDiv>{props.children}</FadeInDiv>);
+    case "Slide":
+      return (<FadeOutLeftDiv>{props.children}</FadeOutLeftDiv>);
+    case "Rise":
+      return (<SlideOutDownDiv>{props.children}</SlideOutDownDiv>);
+    case "false":
+      return (<div>{props.children}</div>);
+  }
+}
+
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
@@ -51,29 +64,65 @@ class InputForm extends React.Component {
 
   render() {
     if (!this.props.shouldAnimate) {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Enter the {this.state.name}: {JSON.stringify(this.state.splitPoem)}
-          {this.state.poem}
-          <textarea value={this.state.poem} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Enter the {this.state.name}: {JSON.stringify(this.state.splitPoem)}
+            {this.state.poem}
+            <textarea value={this.state.poem} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      );
     } else if (this.props.shouldAnimate) {
-        return (
-          <div id={"animated-"+this.props.name}>
-            <FadeInDiv>
-              {this.state.poem}
-    <img src="https://picsum.photos/300/200/?random" />
-
-            </FadeInDiv>
-          </div>
-        )
-    }
-  }
+      return (
+        <SettingsContextConsumer>
+          {value => {
+            return (
+              <div id={"animated-" + this.props.name}>
+                <AnimationDiv animation={value.state["animation"]}>
+                  {this.state.poem}
+                </AnimationDiv>
+              </div>);}}
+        </SettingsContextConsumer>
+      );
+            }}
 }
+/*
+function MainBox() {
+  const [isFull, setIsFull] = useState(false);
+  function changeFull(value) {
+    setIsFull(value);
+  }
+
+  function goFull() {
+    setIsFull(true);
+  }
+
+  return (
+    <div id="main-box">
+      <SettingsContextProvider>
+      <Menu />
+      <Fullscreen
+        enabled={isFull}
+        onChange={() => setIsFull(isFull)}
+      >
+        <div id="input-forms">
+          <AnimationDiv animation="false">
+          <InputForm name="poem" shouldAnimate={isFull} />
+          <InputForm name="translation" shouldAnimate={isFull} />
+          </AnimationDiv>
+        </div>
+        </Fullscreen>
+      <button id="on-top" onClick={goFull}>
+        Animate
+      </button>
+      </SettingsContextProvider>
+
+    </div>
+  );
+}
+*/
 
 class MainBox extends React.Component {
   constructor(props) {
@@ -94,22 +143,21 @@ class MainBox extends React.Component {
     return (
       <div id="main-box">
         <SettingsContextProvider>
-        <Menu />
-        <button onClick={this.MenuActivate}>Hide menu</button>
-        <Fullscreen
-          enabled={this.state.isFull}
-          onChange={isFull => this.setState({isFull})}
-        >
-          <div id="input-forms">
-            <InputForm name="poem" shouldAnimate={this.state.isFull} />
-            <InputForm name="translation" shouldAnimate={this.state.isFull} />
-          </div>
+          <Menu />
+          <button onClick={this.MenuActivate}>Hide menu</button>
+          <Fullscreen
+            enabled={this.state.isFull}
+            onChange={isFull => this.setState({ isFull })}
+          >
+            <div id="input-forms">
+              <InputForm name="poem" shouldAnimate={this.state.isFull} />
+              <InputForm name="translation" shouldAnimate={this.state.isFull} />
+            </div>
           </Fullscreen>
-        <button id="on-top" onClick={this.goFull}>
-          {this.state.animationText}
-        </button>
+          <button id="on-top" onClick={this.goFull}>
+            {this.state.animationText}
+          </button>
         </SettingsContextProvider>
-
       </div>
     );
   }
