@@ -38,18 +38,21 @@ function AnimationDiv(props) {
   }
 }
 
+
 class InputForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       poem: '',
       splitPoem: [],
+      stanzas: [],
       name: props.name,
       poemSubmitted: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.poemStyle = this.poemStyle.bind(this)
   }
 
   handleChange(event) {
@@ -59,7 +62,19 @@ class InputForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ splitPoem: this.state.poem.split('\n') });
+    this.setState({ stanzas: this.state.poem.split('\n\n') });
     this.setState({ poemSubmitted: true });
+  }
+
+  poemStyle(setting) {
+    switch (setting) {
+      case "Verse-by-verse":
+        return this.state.splitPoem;
+      case "Entire text":
+        return this.state.poem;
+      case "By stanza":
+        return this.state.stanzas;
+    }
   }
 
   render() {
@@ -81,7 +96,7 @@ class InputForm extends React.Component {
             return (
               <div id={"animated-" + this.props.name}>
                 <AnimationDiv animation={value.state["animation"]}>
-                  {this.state.poem}
+                  {[this.poemStyle(value.state["option"])]}
                 </AnimationDiv>
               </div>);
           }}
