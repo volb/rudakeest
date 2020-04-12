@@ -56,9 +56,21 @@ function MenuButton(props) {
     dispatch({ type: name, payload: CHOICES[name][num] });
     //alert(JSON.stringify(state));
   }
+
+  function clickHandler() {
+    setSettings(props.name, props.number);
+  }
+  /*
   return (
     <div onClick={props.onClick} className={props.active ? "day active" : "day"}>
-      <div onClick={() => setSettings(props.name, props.number)}>{CHOICES[props.name][props.number]}</div>
+      <p onClick={() => setSettings(props.name, props.number)}>{CHOICES[props.name][props.number]}</p>
+    </div>
+  );*/
+  return (
+    <div className="mb" onClick={clickHandler}>
+      <div onClick={props.onClick} className={props.active ? "day active" : "day"}>
+        {CHOICES[props.name][props.number]}
+      </div>
     </div>
   );
 }
