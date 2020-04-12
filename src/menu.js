@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 //import ReactDOM from 'react-dom';
 import './menu.css';
 //import * as serviceWorker from './serviceWorker';
@@ -8,25 +8,29 @@ class Menu extends React.Component {
   render() {
     return (
       <div className="menu">
-      <MenuOption name="FONTS" />
-      <MenuOption name="ANIMATIONS" />
-      <MenuOption name="FORMATTING" />
+        <MenuOption name="FONTS" />
+        <MenuOption name="ANIMATIONS" />
+        <MenuOption name="FORMATTING" />
       </div>
     );
   }
 }
 
-class MenuOption extends React.Component {
-  render() {
-    return (
-      <div className="menu-option">
-      <h2>{this.props.name}</h2>
-      <MenuButton name={this.props.name} number={0} />
-      <MenuButton name={this.props.name} number={1} />
-      <MenuButton name={this.props.name} number={2} />
-      </div>
-    );
-  }
+function MenuOption(props) {
+  const [chosen, setChosen] = useState(0);
+  const inline = [0, 1, 2];
+  return (
+    <div className="menu-option">
+      <h2>{props.name}</h2>
+      {inline.map(t => (
+        <MenuButton
+          name={props.name}
+          active={t === chosen}
+          onClick={() => setChosen(t)}
+          number={t} />
+      ))}
+    </div>
+  );
 }
 
 function MenuButton(props) {
@@ -46,14 +50,19 @@ function MenuButton(props) {
     [state.includeTranslation]
   );
   */
-  
+
   //let setFont = num => dispatch( { type: "set-font", payload: CHOICES["FONTS"][num]});
   function setSettings(name, num) {
-    dispatch( { type: name, payload: CHOICES[name][num] } );
+    dispatch({ type: name, payload: CHOICES[name][num] });
     //alert(JSON.stringify(state));
   }
-  return (<button onClick = {() => setSettings(props.name, props.number)}>{CHOICES[props.name][props.number]}</button>);
+  return (
+    <div onClick={props.onClick} className={props.active ? "day active" : "day"}>
+      <div onClick={() => setSettings(props.name, props.number)}>{CHOICES[props.name][props.number]}</div>
+    </div>
+  );
 }
+
 const CHOICES = {
   "FONTS": ['Lusitana', 'Gotu', 'Inria Serif'],
   "ANIMATIONS": ['Fade', 'Rise', 'Slide'],
