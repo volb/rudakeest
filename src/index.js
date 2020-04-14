@@ -5,7 +5,7 @@ import './menu.css';
 import './index.css';
 import { SettingsContextProvider, SettingsContext, SettingsContextConsumer } from './settingsContext';
 //import * as serviceWorker from './serviceWorker';
-import { fadeIn, fadeOutLeft, slideOutDown } from 'react-animations'
+import { fadeIn, fadeOutLeft, fadeOutUp } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import Fullscreen from "react-full-screen";
 
@@ -20,9 +20,9 @@ const FadeOutLeftDiv = styled.div`
 `;
 
 
-const SlideOutDownAnimation = keyframes`${slideOutDown}`;
-const SlideOutDownDiv = styled.div`
-  animation: infinite 5s ${SlideOutDownAnimation};
+const FadeOutUpAnimation = keyframes`${fadeOutUp}`;
+const FadeoutUpDiv = styled.div`
+  animation: infinite 5s ${FadeOutUpAnimation};
 `;
 
 function AnimationDiv(props) {
@@ -32,7 +32,7 @@ function AnimationDiv(props) {
     case "Slide":
       return (<FadeOutLeftDiv>{props.children}</FadeOutLeftDiv>);
     case "Rise":
-      return (<SlideOutDownDiv>{props.children}</SlideOutDownDiv>);
+      return (<FadeoutUpDiv>{props.children}</FadeoutUpDiv>);
     case "false":
       return (<div>{props.children}</div>);
   }
