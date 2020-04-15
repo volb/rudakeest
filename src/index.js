@@ -11,18 +11,18 @@ import Fullscreen from "react-full-screen";
 
 const FadeInAnimation = keyframes`${fadeIn}`;
 const FadeInDiv = styled.div`
-  animation: infinite 5s ${FadeInAnimation};
+  animation: 5s ${FadeInAnimation};
 `;
 
 const FadeOutLeftAnimation = keyframes`${fadeOutLeft}`;
 const FadeOutLeftDiv = styled.div`
-  animation: infinite 5s ${FadeOutLeftAnimation};
+  animation: 5s ${FadeOutLeftAnimation};
 `;
 
 
 const FadeOutUpAnimation = keyframes`${fadeOutUp}`;
 const FadeoutUpDiv = styled.div`
-  animation: infinite 5s ${FadeOutUpAnimation};
+  animation: 5s ${FadeOutUpAnimation};
 `;
 
 function AnimationDiv(props) {
@@ -44,6 +44,7 @@ class InputForm extends React.Component {
     super(props);
     this.state = {
       poem: '',
+      wholePoem: [],
       splitPoem: [],
       stanzas: [],
       name: props.name,
@@ -63,6 +64,7 @@ class InputForm extends React.Component {
     event.preventDefault();
     this.setState({ splitPoem: this.state.poem.split('\n') });
     this.setState({ stanzas: this.state.poem.split('\n\n') });
+    this.setState({ wholePoem: [this.state.poem]});
     this.setState({ poemSubmitted: true });
   }
 
@@ -71,7 +73,7 @@ class InputForm extends React.Component {
       case "Verse-by-verse":
         return this.state.splitPoem;
       case "Entire text":
-        return this.state.poem;
+        return this.state.wholePoem;
       case "By stanza":
         return this.state.stanzas;
     }
@@ -95,7 +97,7 @@ class InputForm extends React.Component {
           {value => {
             return (
               <div id={"animated-" + this.props.name}>
-                <AnimationDiv animation={value.state["animation"]}>
+                <AnimationDiv onAnimationEnd={() => alert("test")} animation={value.state["animation"]}>
                   {[this.poemStyle(value.state["option"])]}
                 </AnimationDiv>
               </div>);
