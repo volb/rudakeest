@@ -5,7 +5,7 @@ import './menu.css';
 import './index.css';
 import { SettingsContextProvider, SettingsContext, SettingsContextConsumer } from './settingsContext';
 //import * as serviceWorker from './serviceWorker';
-import { fadeIn, fadeOutLeft, fadeOutUp } from 'react-animations'
+import { fadeIn, fadeInLeft, fadeInUp } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import Fullscreen from "react-full-screen";
 
@@ -14,15 +14,15 @@ const FadeInDiv = styled.div`
   animation: 5s ${FadeInAnimation};
 `;
 
-const FadeOutLeftAnimation = keyframes`${fadeOutLeft}`;
-const FadeOutLeftDiv = styled.div`
-  animation: 5s ${FadeOutLeftAnimation};
+const FadeInLeftAnimation = keyframes`${fadeInLeft}`;
+const FadeInLeftDiv = styled.div`
+  animation: 5s ${FadeInLeftAnimation};
 `;
 
 
-const FadeOutUpAnimation = keyframes`${fadeOutUp}`;
-const FadeoutUpDiv = styled.div`
-  animation: 5s ${FadeOutUpAnimation};
+const FadeInUpAnimation = keyframes`${fadeInUp}`;
+const FadeInUpDiv = styled.div`
+  animation: 5s ${FadeInUpAnimation};
 `;
 
 function AnimationDiv(props) {
@@ -30,9 +30,9 @@ function AnimationDiv(props) {
     case "Fade":
       return (<FadeInDiv>{props.children}</FadeInDiv>);
     case "Slide":
-      return (<FadeOutLeftDiv>{props.children}</FadeOutLeftDiv>);
+      return (<FadeInLeftDiv>{props.children}</FadeInLeftDiv>);
     case "Rise":
-      return (<FadeoutUpDiv>{props.children}</FadeoutUpDiv>);
+      return (<FadeInUpDiv>{props.children}</FadeInUpDiv>);
     case "false":
       return (<div>{props.children}</div>);
   }
@@ -123,8 +123,8 @@ class InputForm extends React.Component {
         <SettingsContextConsumer>
           {value => {
             return (
-              <div id={"animated-" + this.props.name}>
-                <AnimationDiv onKeyDown={this.handleKeyDown} animation={value.state["animation"]}>
+              <div id={"animated-" + this.props.name} onKeyDown={this.handleKeyDown}>
+                <AnimationDiv animation={value.state["animation"]} tabStyle={this.state.position}>
                   {this.poemStyle(value.state["option"])[this.state.position]}
                 </AnimationDiv>
                 {this.state.position}
