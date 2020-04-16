@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Menu from './menu';
 import './menu.css';
 import './index.css';
-import { SettingsContextProvider, SettingsContext, SettingsContextConsumer } from './settingsContext';
+import { SettingsContextProvider, SettingsContextConsumer } from './settingsContext';
 //import * as serviceWorker from './serviceWorker';
 import { fadeIn, fadeInLeft, fadeInUp } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
@@ -98,10 +98,10 @@ class InputForm extends React.Component {
   handleKeyDown = e => {
     switch (e.key) {
       case "ArrowLeft":
-        this.setState( {position: this.state.position-1});
+        this.setState( {position: this.state.position-1} );
         break;
       case "ArrowRight":
-        this.setState( {position: this.state.position+1});
+        this.setState( {position: this.state.position+1} );
         break;
     }
   }
@@ -124,11 +124,10 @@ class InputForm extends React.Component {
           {value => {
             return (
               <div id={"animated-" + this.props.name} onKeyDown={this.handleKeyDown}>
-                <AnimationDiv animation={value.state["animation"]} tabStyle={this.state.position}>
+                <AnimationDiv animation={value.state["animation"]} key={this.state.position}>
                   {this.poemStyle(value.state["option"])[this.state.position]}
                 </AnimationDiv>
                 {this.state.position}
-
               </div>);
           }}
         </SettingsContextConsumer>
