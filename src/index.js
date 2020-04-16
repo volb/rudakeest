@@ -48,12 +48,14 @@ class InputForm extends React.Component {
       splitPoem: [],
       stanzas: [],
       name: props.name,
+      position: 0,
       poemSubmitted: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.poemStyle = this.poemStyle.bind(this)
+    this.poemStyle = this.poemStyle.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   handleChange(event) {
@@ -79,6 +81,31 @@ class InputForm extends React.Component {
     }
   }
 
+  poemAnimate(poemArray) {
+    for (var element of poemArray) {
+      return <div>{element}</div>
+    }
+  }
+  
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = e => {
+    switch (e.key) {
+      case "ArrowLeft":
+        this.setState( {position: this.state.position-1});
+        break;
+      case "ArrowRight":
+        this.setState( {position: this.state.position+1});
+        break;
+    }
+  }
+
   render() {
     if (!this.props.shouldAnimate) {
       return (
@@ -97,9 +124,11 @@ class InputForm extends React.Component {
           {value => {
             return (
               <div id={"animated-" + this.props.name}>
-                <AnimationDiv onAnimationEnd={() => alert("test")} animation={value.state["animation"]}>
-                  {[this.poemStyle(value.state["option"])]}
+                <AnimationDiv onKeyDown={this.handleKeyDown} animation={value.state["animation"]}>
+                  {this.poemStyle(value.state["option"])[this.state.position]}
                 </AnimationDiv>
+                {this.state.position}
+
               </div>);
           }}
         </SettingsContextConsumer>
