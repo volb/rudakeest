@@ -84,13 +84,13 @@ class InputForm extends React.Component {
 
   withStanzaMarkers(splitPoemArray) {
     let reformattedArray = [];
-    reformattedArray.push(splitPoemArray[0]+"\n\xB7");
+    reformattedArray.push(splitPoemArray[0]+"\n\u2042");
     for (let i = 1; i < splitPoemArray.length; i++) {
-      if (splitPoemArray[i] == "" && i < splitPoemArray.length - 1) {
-        reformattedArray[i+1] = splitPoemArray[i+1]+"\n&middot;";
-      }
-       else {
-          reformattedArray[i] = splitPoemArray[i]
+      reformattedArray[i] = splitPoemArray[i];
+    }
+    for (let i = 1; i < splitPoemArray.length; i++) {
+      if (splitPoemArray[i] == " " && i < splitPoemArray.length - 1) {
+        reformattedArray[i+1] = splitPoemArray[i+1]+"\n\u2042";
       }
     }
     return reformattedArray;
