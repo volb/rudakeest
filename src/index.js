@@ -56,6 +56,7 @@ class InputForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.poemStyle = this.poemStyle.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.withStanzaMarkers = this.withStanzaMarkers.bind(this);
   }
 
   handleChange(event) {
@@ -64,7 +65,7 @@ class InputForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ splitPoem: this.state.poem.split('\n') });
+    this.setState({ splitPoem: this.withStanzaMarkers(this.state.poem.split('\n')) });
     this.setState({ stanzas: this.state.poem.split('\n\n') });
     this.setState({ wholePoem: [this.state.poem]});
     this.setState({ poemSubmitted: true });
@@ -79,6 +80,20 @@ class InputForm extends React.Component {
       case "By stanza":
         return this.state.stanzas;
     }
+  }
+
+  withStanzaMarkers(splitPoemArray) {
+    let reformattedArray = [];
+    reformattedArray.push(splitPoemArray[0]+"\n\xB7");
+    for (let i = 1; i < splitPoemArray.length; i++) {
+      if (splitPoemArray[i] == "" && i < splitPoemArray.length - 1) {
+        reformattedArray[i+1] = splitPoemArray[i+1]+"\n&middot;";
+      }
+       else {
+          reformattedArray[i] = splitPoemArray[i]
+      }
+    }
+    return reformattedArray;
   }
 
   poemAnimate(poemArray) {
@@ -112,7 +127,6 @@ class InputForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Enter the {this.state.name}: {JSON.stringify(this.state.splitPoem)}
-            {this.state.poem}
             <textarea value={this.state.poem} onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit" />
