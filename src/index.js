@@ -93,7 +93,10 @@ class InputForm extends React.Component {
         reformattedArray[i+1] = splitPoemArray[i+1]+"\n\u2042";
       }
     }
-    return reformattedArray;
+    var arrayWithoutBlankSlides = reformattedArray.filter(function (element) {
+      return element != " ";
+    });
+    return arrayWithoutBlankSlides;
   }
 
   poemAnimate(poemArray) {
