@@ -135,12 +135,15 @@ class InputForm extends React.Component {
           <input type="submit" value="Submit" />
         </form>
       );
-    } else if (this.props.shouldAnimate) {
+    } else if (this.state.poem == '') {
+      return '';
+    }
+    else if (this.props.shouldAnimate) {
       return (
         <SettingsContextConsumer>
           {value => {
             return (
-              <div id={"animated-" + this.props.name} onKeyDown={this.handleKeyDown}>
+              <div id={"animated-input"/*this.props.name*/} onKeyDown={this.handleKeyDown}>
                 <AnimationDiv animation={value.state["animation"]} key={this.state.position}>
                   {this.poemStyle(value.state["option"])[this.state.position]}
                 </AnimationDiv>
@@ -177,7 +180,7 @@ class MainBox extends React.Component {
             enabled={this.state.isFull}
             onChange={isFull => this.setState({ isFull })}
           >
-            <div id="input-forms">
+            <div id={this.state.isFull ? "fullscreen-forms" : "input-forms"}>
               <InputForm name="poem" shouldAnimate={this.state.isFull} />
               <InputForm name="translation" shouldAnimate={this.state.isFull} />
             </div>

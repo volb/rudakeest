@@ -14,25 +14,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+/*
 #animated-poem {
   float: left;
   background-color: yellow;
   width: 50%;
   height: 100vh;
   white-space: pre-wrap;
-}
+}*/
 
-#animated-translation {
-  float: right;
-  background-color: green;
-  width: 50%;
-  height: 100vh;
+#animated-input {
+  display: table-cell;
+  /*vertical-align: middle;*/
+  border: 2px dashed red;
   white-space: pre-wrap;
+  height: 100vh;
 }
 
-#input-forms {
-  background-color: white;
+
+#fullscreen-forms {
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 10px;
+  background: gray;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  border-spacing: 10px;
 }
 
 .on-top {
