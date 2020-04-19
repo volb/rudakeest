@@ -24,7 +24,7 @@ code {
 }
 
 #animated-translation {
-  float:left;
+  float: right;
   background-color: green;
   width: 50%;
   height: 100vh;

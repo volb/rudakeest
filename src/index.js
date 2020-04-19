@@ -89,12 +89,12 @@ class InputForm extends React.Component {
       reformattedArray[i] = splitPoemArray[i];
     }
     for (let i = 1; i < splitPoemArray.length; i++) {
-      if (splitPoemArray[i] == " " && i < splitPoemArray.length - 1) {
+      if (splitPoemArray[i].trim().length == 0 && i < splitPoemArray.length - 1) {
         reformattedArray[i+1] = splitPoemArray[i+1]+"\n\u2042";
       }
     }
     var arrayWithoutBlankSlides = reformattedArray.filter(function (element) {
-      return element != " ";
+      return element != " " && element != "";
     });
     return arrayWithoutBlankSlides;
   }
@@ -144,7 +144,6 @@ class InputForm extends React.Component {
                 <AnimationDiv animation={value.state["animation"]} key={this.state.position}>
                   {this.poemStyle(value.state["option"])[this.state.position]}
                 </AnimationDiv>
-                {this.state.position}
               </div>);
           }}
         </SettingsContextConsumer>
