@@ -1,6 +1,6 @@
 
 .day {
-    background-color: #006e8c;
+    background-color: #312450;
     align-items: center;
     cursor: default;
     display: block;
@@ -12,7 +12,7 @@
   }
   
 .active {
-    background-color: #a8c6fa;
+    /*background-color: #a8c6fa;*/
     color: white;
 }
   
@@ -28,7 +28,7 @@
     position: fixed;
     width: 25%;
     height: 100vh;
-    background: #006e8c;
+    background: #312450;
     font-size: 0.65em;
     text-align: center;
 }

@@ -86,7 +86,7 @@ class InputForm extends React.Component {
 
   withStanzaMarkers(splitPoemArray) {
     let reformattedArray = [];
-    reformattedArray.push(splitPoemArray[0]+"\n\u2042");
+    reformattedArray.push(splitPoemArray[0]);//+"\n\u2042");
     for (let i = 1; i < splitPoemArray.length; i++) {
       reformattedArray[i] = splitPoemArray[i];
     }
@@ -136,7 +136,7 @@ class InputForm extends React.Component {
             Enter the {this.state.name}: {JSON.stringify(this.state.splitPoem)}
             <textarea value={this.state.poem} onChange={this.handleChange} />
           </label>
-          <input type="submit" value="Submit" />
+          <input className="button1" type="submit" value="Save" />
         </form>
       );
     } else if (this.state.poem === '') {
@@ -189,7 +189,7 @@ class MainBox extends React.Component {
               <InputForm name="translation" shouldAnimate={this.state.isFull} />
             </div>
           </Fullscreen>
-          <button id="on-top" onClick={this.goFull}>
+          <button className="button1" onClick={this.goFull}>
             {this.state.animationText}
           </button>
           </div>

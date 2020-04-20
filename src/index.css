@@ -11,9 +11,9 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
 /*
 #animated-poem {
   float: left;
@@ -32,7 +32,6 @@ code {
   height: 100vh;
 }
 
-
 #fullscreen-forms {
   border: 2px solid;
   border-radius: 4px;
@@ -47,17 +46,53 @@ code {
   font-size: 30px;
 }
 
-.on-top {
-  z-index: 999;
-}
-
 .container {
+  background-color: #2A2966;
   position: relative;
   width: 75%;
   float: right;
   height: 100vh;
+  color: #ABCAFF;
+  text-align: center;
 }
 
+/*
+input[type="text"], textarea {
 
-  
+  background-color : #ABCAFF; 
 
+}*/
+
+input[type="text"], textarea {
+  background: transparent;
+  border: none;
+  background-color: #ABCAFF;
+  line-height: 12px;
+  vertical-align: center;
+}
+
+.button1 {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #FFFFFF;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  /*font-family: 'Roboto', sans-serif;
+  font-weight: 300;*/
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.button1:hover {
+  color: #000000;
+  background-color: #FFFFFF;
+}
+
+#input-forms {
+  width: 60%;
+  text-align: right;
+  padding-top: 40vh;
+}
