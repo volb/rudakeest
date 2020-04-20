@@ -8,7 +8,8 @@ class Menu extends React.Component {
   render() {
     return (
       <div className="menu">
-        <div className="menu-headers">rudakeest</div>
+        <div className="menu-headers menu-logo">rudakeest</div>
+        <div className="menu-subheader">a poetry animation service</div>
         <MenuOption name="FONTS" />
         <MenuOption name="ANIMATIONS" />
         <MenuOption name="FORMATTING" />

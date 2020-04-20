@@ -179,7 +179,7 @@ class MainBox extends React.Component {
       <div id="main-box">
         <SettingsContextProvider>
           <Menu />
-          <button onClick={this.MenuActivate}>Hide menu</button>
+          <div className="container">
           <Fullscreen
             enabled={this.state.isFull}
             onChange={isFull => this.setState({ isFull })}
@@ -192,6 +192,7 @@ class MainBox extends React.Component {
           <button id="on-top" onClick={this.goFull}>
             {this.state.animationText}
           </button>
+          </div>
         </SettingsContextProvider>
       </div>
     );
