@@ -26,7 +26,8 @@ code {
 #animated-input {
   display: table-cell;
   /*vertical-align: middle;*/
-  border: 2px dashed red;
+  border: 5px double #1C6EA4;
+  padding: 5px;
   white-space: pre-wrap;
   height: 100vh;
 }
@@ -43,6 +44,7 @@ code {
   height: 100px;
   box-sizing: border-box;
   border-spacing: 10px;
+  font-size: 30px;
 }
 
 .on-top {

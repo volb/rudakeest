@@ -22,3 +22,17 @@
 .mb {
     display: inline;
 }
+
+.menu {
+    position: fixed;
+    width: 25%;
+    height: 100vh;
+    background: #006e8c;
+    font-size: 0.65em;
+}
+
+.menu-headers {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 45px;
+    color: #a8c6fa;
+}

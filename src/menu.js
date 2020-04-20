@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 //import ReactDOM from 'react-dom';
 import './menu.css';
 //import * as serviceWorker from './serviceWorker';
@@ -8,6 +8,7 @@ class Menu extends React.Component {
   render() {
     return (
       <div className="menu">
+        <div className="menu-headers">rudakeest</div>
         <MenuOption name="FONTS" />
         <MenuOption name="ANIMATIONS" />
         <MenuOption name="FORMATTING" />
@@ -21,7 +22,7 @@ function MenuOption(props) {
   const inline = [0, 1, 2];
   return (
     <div className="menu-option">
-      <h2>{props.name}</h2>
+      <div className="menu-headers">{props.name}</div>
       {inline.map(t => (
         <MenuButton
           name={props.name}

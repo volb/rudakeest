@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Menu from './menu';
 import './menu.css';
@@ -33,7 +33,7 @@ function AnimationDiv(props) {
       return (<FadeInLeftDiv>{props.children}</FadeInLeftDiv>);
     case "Rise":
       return (<FadeInUpDiv>{props.children}</FadeInUpDiv>);
-    case "false":
+    default:
       return (<div>{props.children}</div>);
   }
 }
@@ -79,6 +79,8 @@ class InputForm extends React.Component {
         return this.state.wholePoem;
       case "By stanza":
         return this.state.stanzas;
+      default:
+        return "";
     }
   }
 
@@ -89,12 +91,12 @@ class InputForm extends React.Component {
       reformattedArray[i] = splitPoemArray[i];
     }
     for (let i = 1; i < splitPoemArray.length; i++) {
-      if (splitPoemArray[i].trim().length == 0 && i < splitPoemArray.length - 1) {
+      if (splitPoemArray[i].trim().length === 0 && i < splitPoemArray.length - 1) {
         reformattedArray[i+1] = splitPoemArray[i+1]+"\n\u2042";
       }
     }
     var arrayWithoutBlankSlides = reformattedArray.filter(function (element) {
-      return element != " " && element != "";
+      return element !== " " && element !== "";
     });
     return arrayWithoutBlankSlides;
   }
@@ -121,6 +123,8 @@ class InputForm extends React.Component {
       case "ArrowRight":
         this.setState( {position: this.state.position+1} );
         break;
+      default: 
+        break;
     }
   }
 
@@ -135,7 +139,7 @@ class InputForm extends React.Component {
           <input type="submit" value="Submit" />
         </form>
       );
-    } else if (this.state.poem == '') {
+    } else if (this.state.poem === '') {
       return '';
     }
     else if (this.props.shouldAnimate) {
