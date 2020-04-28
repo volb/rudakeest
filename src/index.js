@@ -8,6 +8,7 @@ import { SettingsContextProvider, SettingsContextConsumer } from './settingsCont
 import { fadeIn, fadeInLeft, fadeInUp } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import Fullscreen from "react-full-screen";
+import { scrapePoem, printOutEnv } from 'balkhiate';
 
 const FadeInAnimation = keyframes`${fadeIn}`;
 const FadeInDiv = styled.div`
@@ -38,6 +39,10 @@ function AnimationDiv(props) {
   }
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -57,10 +62,19 @@ class InputForm extends React.Component {
     this.poemStyle = this.poemStyle.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.withStanzaMarkers = this.withStanzaMarkers.bind(this);
+    this.generateRandomPoem = this.generateRandomPoem.bind(this);
   }
 
   handleChange(event) {
     this.setState({ poem: event.target.value });
+  }
+
+  async generateRandomPoem() {
+    let response = await scrapePoem("ghazal");
+    let i = getRandomInt(response.result.length);
+    console.log("dsadsasad.asdm.samsdlkmsalknsalknsadlnsadlnsadlk");
+    this.setState({ poem: response.result[0] });
+    return response;
   }
 
   handleSubmit(event) {
@@ -131,6 +145,7 @@ class InputForm extends React.Component {
   render() {
     if (!this.props.shouldAnimate) {
       return (
+        <div>
         <form onSubmit={this.handleSubmit}>
           <label>
             Enter the {this.state.name}: {JSON.stringify(this.state.splitPoem)}
@@ -138,6 +153,8 @@ class InputForm extends React.Component {
           </label>
           <input className="button1" type="submit" value="Save" />
         </form>
+        {JSON.stringify(this.generateRandomPoem())}
+        </div>
       );
     } else if (this.state.poem === '') {
       return '';
@@ -180,6 +197,8 @@ class MainBox extends React.Component {
         <SettingsContextProvider>
           <Menu />
           <div className="container">
+          <button onClick={printOutEnv("d")}>click</button>
+
           <Fullscreen
             enabled={this.state.isFull}
             onChange={isFull => this.setState({ isFull })}
@@ -187,6 +206,8 @@ class MainBox extends React.Component {
             <div id={this.state.isFull ? "fullscreen-forms" : "input-forms"}>
               <InputForm name="poem" shouldAnimate={this.state.isFull} />
               <InputForm name="translation" shouldAnimate={this.state.isFull} />
+              {process.env.REACT_APP_STANDS4_API_UID}
+
             </div>
           </Fullscreen>
           <button className="button1" onClick={this.goFull}>
