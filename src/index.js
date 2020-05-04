@@ -153,7 +153,6 @@ class InputForm extends React.Component {
           </label>
           <input className="button1" type="submit" value="Save" />
         </form>
-        {JSON.stringify(this.generateRandomPoem())}
         </div>
       );
     } else if (this.state.poem === '') {
@@ -197,7 +196,6 @@ class MainBox extends React.Component {
         <SettingsContextProvider>
           <Menu />
           <div className="container">
-          <button onClick={printOutEnv("d")}>click</button>
 
           <Fullscreen
             enabled={this.state.isFull}
@@ -206,8 +204,6 @@ class MainBox extends React.Component {
             <div id={this.state.isFull ? "fullscreen-forms" : "input-forms"}>
               <InputForm name="poem" shouldAnimate={this.state.isFull} />
               <InputForm name="translation" shouldAnimate={this.state.isFull} />
-              {process.env.REACT_APP_STANDS4_API_UID}
-
             </div>
           </Fullscreen>
           <button className="button1" onClick={this.goFull}>
