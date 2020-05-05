@@ -10,10 +10,5 @@ app.get('/', (req, res) => {
 });
 const test = balkhiate.scrapePoem("rumi");
 const testB = test.then((result) => console.log(result));
-// below does not work
-let something = async() => {
-    let result = await balkhiate.scrapePoem();
-    return result;
- }
  
 app.listen(port,testB);
