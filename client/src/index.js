@@ -8,7 +8,6 @@ import { SettingsContextProvider, SettingsContextConsumer } from './settingsCont
 import { fadeIn, fadeInLeft, fadeInUp } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import Fullscreen from "react-full-screen";
-import { scrapePoem, printOutEnv } from 'balkhiate';
 
 const FadeInAnimation = keyframes`${fadeIn}`;
 const FadeInDiv = styled.div`
@@ -70,7 +69,7 @@ class InputForm extends React.Component {
   }
 
   async generateRandomPoem() {
-    let response = await scrapePoem("ghazal");
+    let response = "poem here";
     let i = getRandomInt(response.result.length);
     console.log("dsadsasad.asdm.samsdlkmsalknsalknsadlnsadlnsadlk");
     this.setState({ poem: response.result[0] });
