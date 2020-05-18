@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -16,8 +18,10 @@ app.get('/', (req, res) => {
 const test = balkhiate.scrapePoem("rumi");
 
 app.get('/poems', (req, res) => {
-    return res.send(test);
+    //return res.send(test);
+    test.then(res.send.bind(res));
 });
 const testB = test.then((result) => console.log(result));
- 
-app.listen(port,testB);
+console.log(test);
+console.log(process.env.STANDS4_API_UID);
+app.listen(port);
