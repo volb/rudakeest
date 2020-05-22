@@ -43,6 +43,7 @@
     font-size: 40px;
 }
 
-.menu-subheader {
+.menu .menu-subheader {
     color: #a8c6fa;
+    size: 30px;
 }

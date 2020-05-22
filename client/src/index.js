@@ -53,7 +53,7 @@ class InputForm extends React.Component {
       stanzas: [],
       name: props.name,
       position: 0,
-      poemSubmitted: false
+      isEditingPoem: true
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -66,6 +66,7 @@ class InputForm extends React.Component {
 
   handleChange(event) {
     this.setState({ poem: event.target.value });
+    this.setState({ isEditingPoem: true });
   }
 
   async generateRandomPoem() {
@@ -81,7 +82,7 @@ class InputForm extends React.Component {
     this.setState({ splitPoem: this.withStanzaMarkers(this.state.poem.split('\n')) });
     this.setState({ stanzas: this.state.poem.split('\n\n') });
     this.setState({ wholePoem: [this.state.poem]});
-    this.setState({ poemSubmitted: true });
+    this.setState({ isEditingPoem: false });
   }
 
   poemStyle(setting) {
@@ -147,10 +148,11 @@ class InputForm extends React.Component {
         <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Enter the {this.state.name}: {JSON.stringify(this.state.splitPoem)}
+            Enter the {this.state.name}:
             <textarea value={this.state.poem} onChange={this.handleChange} />
           </label>
-          <input className="button1" type="submit" value="Save" />
+          <input className="button1" type="submit" value= "Save" /> 
+          <div className="checkmark">{this.state.isEditingPoem ? "\u22EF" : "\u2713"}</div>
         </form>
         </div>
       );
@@ -195,7 +197,6 @@ class MainBox extends React.Component {
         <SettingsContextProvider>
           <Menu />
           <div className="container">
-<a href="/poems">test</a>
           <Fullscreen
             enabled={this.state.isFull}
             onChange={isFull => this.setState({ isFull })}

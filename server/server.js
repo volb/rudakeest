@@ -15,13 +15,18 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
-const test = balkhiate.scrapePoem("rumi");
-
+//const test = balkhiate.scrapePoem("rumi");
+/*
 app.get('/poems', (req, res) => {
-    //return res.send(test);
     test.then(res.send.bind(res));
 });
-const testB = test.then((result) => console.log(result));
-console.log(test);
-console.log(process.env.STANDS4_API_UID);
+*/
+/*
+app.get('/poems', async function(req, res) {
+    let data = await balkhiate.scrapePoem("rumi");
+    res.json(data);
+})
+*/
+//const testB = test.then((result) => console.log(result));
+
 app.listen(port);
