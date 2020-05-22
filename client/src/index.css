@@ -25,7 +25,7 @@ code {
 
 #animated-input {
   display: table-cell;
-  /*vertical-align: middle;*/
+  vertical-align: middle;
   border: 5px double #1C6EA4;
   padding: 5px;
   white-space: pre-wrap;
@@ -99,6 +99,7 @@ input[type="text"], textarea {
   text-align: right;
   padding-top: 40vh;
 }
+
 .checkmark {
   display: inline-block;
   width: 10px;

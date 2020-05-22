@@ -53,7 +53,7 @@ class InputForm extends React.Component {
       stanzas: [],
       name: props.name,
       position: 0,
-      isEditingPoem: true
+      isEditingPoem: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -62,11 +62,12 @@ class InputForm extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.withStanzaMarkers = this.withStanzaMarkers.bind(this);
     this.generateRandomPoem = this.generateRandomPoem.bind(this);
+    this.editingStyle = this.editingStyle.bind(this);
   }
 
   handleChange(event) {
     this.setState({ poem: event.target.value });
-    this.setState({ isEditingPoem: true });
+    this.setState({ isEditingPoem: 1 });
   }
 
   async generateRandomPoem() {
@@ -82,7 +83,7 @@ class InputForm extends React.Component {
     this.setState({ splitPoem: this.withStanzaMarkers(this.state.poem.split('\n')) });
     this.setState({ stanzas: this.state.poem.split('\n\n') });
     this.setState({ wholePoem: [this.state.poem]});
-    this.setState({ isEditingPoem: false });
+    this.setState({ isEditingPoem: 2 });
   }
 
   poemStyle(setting) {
@@ -93,6 +94,19 @@ class InputForm extends React.Component {
         return this.state.wholePoem;
       case "By stanza":
         return this.state.stanzas;
+      default:
+        return "";
+    }
+  }
+
+  editingStyle(setting) {
+    switch (setting) {
+      case 0:
+        return "";
+      case 1:
+        return  "\u22EF";
+      case 2: 
+        return "\u2713";
       default:
         return "";
     }
@@ -152,7 +166,7 @@ class InputForm extends React.Component {
             <textarea value={this.state.poem} onChange={this.handleChange} />
           </label>
           <input className="button1" type="submit" value= "Save" /> 
-          <div className="checkmark">{this.state.isEditingPoem ? "\u22EF" : "\u2713"}</div>
+          <div className="checkmark">{this.editingStyle(this.state.isEditingPoem)}</div>
         </form>
         </div>
       );
@@ -209,6 +223,9 @@ class MainBox extends React.Component {
           <button className="button1" onClick={this.goFull}>
             {this.state.animationText}
           </button>
+          <p>
+            Press Animate to go fullscreen. Use left and right arrow keys to navigate.
+          </p>
           </div>
         </SettingsContextProvider>
       </div>
