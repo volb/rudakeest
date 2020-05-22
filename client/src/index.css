@@ -29,14 +29,15 @@ code {
   border: 5px double #1C6EA4;
   padding: 5px;
   white-space: pre-wrap;
-  height: 100vh;
+  height: 80vh;
+  overflow: visible;
 }
 
 #fullscreen-forms {
   border: 2px solid;
   border-radius: 4px;
   padding: 10px;
-  background: gray;
+  background: #2A2966;
   display: table;
   table-layout: fixed;
   width: 100%;
