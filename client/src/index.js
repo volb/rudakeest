@@ -143,7 +143,7 @@ class InputForm extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown = e => {
+  handleKeyDown(e) {
     switch (e.key) {
       case "ArrowLeft":
         this.setState( {position: this.state.position-1} );
@@ -199,12 +199,18 @@ class MainBox extends React.Component {
     };
 
     this.MenuActivate = this.MenuActivate.bind(this);
+    this.goFull = this.goFull.bind(this);
   }
 
-  goFull = () => {
+  goFull() {
     this.setState({ isFull: true });
   }
 
+  MenuActivate() {
+    /* on "Hide menu" click, hide menu */
+    document.getElementsByClassName("menu")[0].style.display = 'none';
+  }
+  
   render() {
     return (
       <div id="main-box">
@@ -230,11 +236,6 @@ class MainBox extends React.Component {
         </SettingsContextProvider>
       </div>
     );
-  }
-
-  MenuActivate() {
-    /* on "Hide menu" click, hide menu */
-    document.getElementsByClassName("menu")[0].style.display = 'none';
   }
 }
 
