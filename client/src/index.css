@@ -105,3 +105,11 @@ input[type="text"], textarea {
   width: 10px;
   padding-left: 30px;
 }
+
+.enter-label {
+  padding-right: 5px;
+}
+
+.animate-button {
+    text-align: center;
+}

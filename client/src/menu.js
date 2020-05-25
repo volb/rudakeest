@@ -10,6 +10,8 @@ class Menu extends React.Component {
       <div className="menu">
         <div className="menu-headers menu-logo">rudakeest</div>
         <div className="menu-subheader">a poetry animation service</div>
+        <div className="menu-subheader">by <a href="https://github.com/volb">@volb</a></div>
+
         <MenuOption name="FONTS" />
         <MenuOption name="ANIMATIONS" />
         <MenuOption name="FORMATTING" />

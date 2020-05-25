@@ -9,6 +9,9 @@ import { fadeIn, fadeInLeft, fadeInUp } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import Fullscreen from "react-full-screen";
 
+const defaultRudakiTranslation = "I saw a hoopoe near Sarakhs\nWhose little song reached the clouds.\nShe was wearing a little cloak\nOf many different colors.\nO ugly and inverted world,\nI stand before you in awe";
+const defaultRudakiPoem = "پوپک ديدم به حوالی سرخس\nبانگک بر برده به ا بر اندرا\nچادر کی ديدم رنگين برو\nرنگ بسی گونه بر آن چادرا\nیا پرغونه و باژگونه جهان\nمانده من از تو به شگفت اندرا\n";
+
 const FadeInAnimation = keyframes`${fadeIn}`;
 const FadeInDiv = styled.div`
   animation: 5s ${FadeInAnimation};
@@ -47,7 +50,7 @@ class InputForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      poem: '',
+      poem: this.props.defaultText,
       wholePoem: [],
       splitPoem: [],
       stanzas: [],
@@ -161,10 +164,10 @@ class InputForm extends React.Component {
       return (
         <div>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Enter the {this.state.name}:
-            <textarea value={this.state.poem} onChange={this.handleChange} />
+          <label className="enter-label">
+          Enter the {this.state.name}:
           </label>
+          <textarea value={this.state.poem} onChange={this.handleChange} />
           <input className="button1" type="submit" value= "Save" /> 
           <div className="checkmark">{this.editingStyle(this.state.isEditingPoem)}</div>
         </form>
@@ -222,16 +225,19 @@ class MainBox extends React.Component {
             onChange={isFull => this.setState({ isFull })}
           >
             <div id={this.state.isFull ? "fullscreen-forms" : "input-forms"}>
-              <InputForm name="poem" shouldAnimate={this.state.isFull} />
-              <InputForm name="translation" shouldAnimate={this.state.isFull} />
+              <InputForm name="poem" defaultText={defaultRudakiPoem} shouldAnimate={this.state.isFull} />
+              <InputForm name="translation" defaultText={defaultRudakiTranslation} shouldAnimate={this.state.isFull} />
             </div>
           </Fullscreen>
-          <button className="button1" onClick={this.goFull}>
-            {this.state.animationText}
-          </button>
+
           <p>
             Press Animate to go fullscreen. Use left and right arrow keys to navigate.
           </p>
+          <div className="animate-button">
+          <button className="button1" onClick={this.goFull}>
+          {this.state.animationText}
+          </button>
+          </div>
           </div>
         </SettingsContextProvider>
       </div>
