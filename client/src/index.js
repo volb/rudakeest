@@ -9,7 +9,7 @@ import { fadeIn, fadeInLeft, fadeInUp } from 'react-animations'
 import styled, { keyframes } from 'styled-components';
 import Fullscreen from "react-full-screen";
 
-const defaultRudakiTranslation = "I saw a hoopoe near Sarakhs\nWhose little song reached the clouds.\nShe was wearing a little cloak\nOf many different colors.\nO ugly and inverted world,\nI stand before you in awe";
+const defaultRudakiTranslation = "I saw a hoopoe near Sarakhs\nWhose little song reached the clouds.\nShe was wearing a little cloak\nOf many different colors.\nO ugly and inverted world,\nI stand before you in awe.";
 const defaultRudakiPoem = "پوپک ديدم به حوالی سرخس\nبانگک بر برده به ا بر اندرا\nچادر کی ديدم رنگين برو\nرنگ بسی گونه بر آن چادرا\nیا پرغونه و باژگونه جهان\nمانده من از تو به شگفت اندرا\n";
 
 const FadeInAnimation = keyframes`${fadeIn}`;
@@ -58,7 +58,7 @@ class InputForm extends React.Component {
       position: 0,
       isEditingPoem: 0
     };
-
+  
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.poemStyle = this.poemStyle.bind(this);
@@ -66,6 +66,8 @@ class InputForm extends React.Component {
     this.withStanzaMarkers = this.withStanzaMarkers.bind(this);
     this.generateRandomPoem = this.generateRandomPoem.bind(this);
     this.editingStyle = this.editingStyle.bind(this);
+    this.handleFullScreenChange = this.handleFullScreenChange.bind(this);
+
   }
 
   handleChange(event) {
@@ -76,7 +78,6 @@ class InputForm extends React.Component {
   async generateRandomPoem() {
     let response = "poem here";
     let i = getRandomInt(response.result.length);
-    console.log("dsadsasad.asdm.samsdlkmsalknsalknsadlnsadlnsadlk");
     this.setState({ poem: response.result[0] });
     return response;
   }
@@ -140,10 +141,16 @@ class InputForm extends React.Component {
   
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener('fullscreenchange', this.handleFullScreenChange);
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown);
+    document.removeEventListener('fullscreenchange', this.handleFullScreenChange);
+  }
+
+  handleFullScreenChange() {
+    this.setState( {position: 0} );
   }
 
   handleKeyDown(e) {
@@ -154,7 +161,7 @@ class InputForm extends React.Component {
       case "ArrowRight":
         this.setState( {position: this.state.position+1} );
         break;
-      default: 
+      default:
         break;
     }
   }
