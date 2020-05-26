@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0c338c9797bda3b55b7d0286b8ebec61",
+    "revision": "da0be9537c60cc50e248e21a0de0019b",
     "url": "/rudakeest/index.html"
   },
   {
-    "revision": "08dae2a75f652479f34e",
+    "revision": "ef5d908ffa05256977fc",
     "url": "/rudakeest/static/css/main.ab5af68e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rudakeest/static/js/2.907335a5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "08dae2a75f652479f34e",
-    "url": "/rudakeest/static/js/main.fa689807.chunk.js"
+    "revision": "ef5d908ffa05256977fc",
+    "url": "/rudakeest/static/js/main.908e36ef.chunk.js"
   },
   {
     "revision": "d68ec248bbdf308b42a5",

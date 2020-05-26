@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/rudakeest/static/css/main.ab5af68e.chunk.css",
-    "main.js": "/rudakeest/static/js/main.fa689807.chunk.js",
-    "main.js.map": "/rudakeest/static/js/main.fa689807.chunk.js.map",
+    "main.js": "/rudakeest/static/js/main.908e36ef.chunk.js",
+    "main.js.map": "/rudakeest/static/js/main.908e36ef.chunk.js.map",
     "runtime-main.js": "/rudakeest/static/js/runtime-main.5a9a39b4.js",
     "runtime-main.js.map": "/rudakeest/static/js/runtime-main.5a9a39b4.js.map",
     "static/js/2.907335a5.chunk.js": "/rudakeest/static/js/2.907335a5.chunk.js",
     "static/js/2.907335a5.chunk.js.map": "/rudakeest/static/js/2.907335a5.chunk.js.map",
     "index.html": "/rudakeest/index.html",
-    "precache-manifest.916d483d25d6a9cb045617bde8ae39af.js": "/rudakeest/precache-manifest.916d483d25d6a9cb045617bde8ae39af.js",
+    "precache-manifest.9f3db4099155133fbe371eddc792e03c.js": "/rudakeest/precache-manifest.9f3db4099155133fbe371eddc792e03c.js",
     "service-worker.js": "/rudakeest/service-worker.js",
     "static/css/main.ab5af68e.chunk.css.map": "/rudakeest/static/css/main.ab5af68e.chunk.css.map",
     "static/js/2.907335a5.chunk.js.LICENSE.txt": "/rudakeest/static/js/2.907335a5.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.5a9a39b4.js",
     "static/js/2.907335a5.chunk.js",
     "static/css/main.ab5af68e.chunk.css",
-    "static/js/main.fa689807.chunk.js"
+    "static/js/main.908e36ef.chunk.js"
   ]
 }
