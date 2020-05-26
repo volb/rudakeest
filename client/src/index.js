@@ -56,7 +56,8 @@ class InputForm extends React.Component {
       stanzas: [],
       name: props.name,
       position: 0,
-      isEditingPoem: 0
+      isEditingPoem: 0,
+      currentStyle: "Verse-by-verse"
     };
   
     this.handleChange = this.handleChange.bind(this);
@@ -156,11 +157,23 @@ class InputForm extends React.Component {
   handleKeyDown(e) {
     switch (e.key) {
       case "ArrowLeft":
-        this.setState( {position: this.state.position-1} );
-        break;
+        if (this.state.position <= 0) {
+          console.log("left less")
+          break;
+        } else {
+          this.setState( {position: this.state.position-1} );
+          console.log("left more")
+          break;
+        }
       case "ArrowRight":
-        this.setState( {position: this.state.position+1} );
-        break;
+        if (this.state.position >= this.poemStyle(this.props.currentFormat).length-1) {
+          console.log("right less")
+          break;
+        } else {
+          this.setState( {position: this.state.position+1} );
+          console.log("right more")
+          break;
+        }        
       default:
         break;
     }
@@ -169,16 +182,22 @@ class InputForm extends React.Component {
   render() {
     if (!this.props.shouldAnimate) {
       return (
-        <div>
-        <form onSubmit={this.handleSubmit}>
-          <label className="enter-label">
-          Enter the {this.state.name}:
-          </label>
-          <textarea value={this.state.poem} onChange={this.handleChange} />
-          <input className="button1" type="submit" value= "Save" /> 
-          <div className="checkmark">{this.editingStyle(this.state.isEditingPoem)}</div>
-        </form>
-        </div>
+       /* <SettingsContextConsumer>
+          {value => {
+            return (*/
+            <div>
+              <form onSubmit={this.handleSubmit}>
+              <label className="enter-label">
+                Enter the {this.state.name}:
+              </label>
+              <textarea value={this.state.poem} onChange={this.handleChange} />
+              <input className="button1" type="submit" value= "Save" /*onClick={() => this.setState( {currentStyle: value.state["option"]})}*/ /> 
+              <div className="checkmark">{this.editingStyle(this.state.isEditingPoem)}</div>
+              </form>
+            </div>
+        /*    )}}
+        </SettingsContextConsumer>*/
+
       );
     } else if (this.state.poem === '') {
       return '';
@@ -188,7 +207,7 @@ class InputForm extends React.Component {
         <SettingsContextConsumer>
           {value => {
             return (
-              <div id={"animated-input"/*this.props.name*/} onKeyDown={this.handleKeyDown}>
+              <div id={"animated-input"/*this.props.name*/} onKeyDown={(e) => this.handleKeyDown(e)}>
                 <AnimationDiv animation={value.state["animation"]} key={this.state.position}>
                   {this.poemStyle(value.state["option"])[this.state.position]}
                 </AnimationDiv>
@@ -231,10 +250,16 @@ class MainBox extends React.Component {
             enabled={this.state.isFull}
             onChange={isFull => this.setState({ isFull })}
           >
-            <div id={this.state.isFull ? "fullscreen-forms" : "input-forms"}>
-              <InputForm name="poem" defaultText={defaultRudakiPoem} shouldAnimate={this.state.isFull} />
-              <InputForm name="translation" defaultText={defaultRudakiTranslation} shouldAnimate={this.state.isFull} />
-            </div>
+            <SettingsContextConsumer>
+              {value => {
+                return (
+                  <div id={this.state.isFull ? "fullscreen-forms" : "input-forms"}>
+                  <InputForm name="poem" defaultText={defaultRudakiPoem} shouldAnimate={this.state.isFull} currentFormat={value.state["option"]} />
+                  <InputForm name="translation" defaultText={defaultRudakiTranslation} shouldAnimate={this.state.isFull} currentFormat={value.state["option"]} />
+                  </div>    
+                )
+              }}
+            </SettingsContextConsumer>
           </Fullscreen>
 
           <p>
